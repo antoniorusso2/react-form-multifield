@@ -3,7 +3,9 @@ import Style from './card.module.css';
 import Btn from '../btn/Card-btn.jsx';
 import placeholder from '../../assets/placeholder.png';
 
-function Card({ title = '', image = '', tags = [] }) {
+function Card({ item }) {
+  const { title, image, content, tags } = item;
+
   return (
     <div className="col-4">
       <div className={Style.card}>
@@ -22,7 +24,7 @@ function Card({ title = '', image = '', tags = [] }) {
             </ul>
           ) : null}
 
-          <p className={Style.card__text}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis, porro. Nesciunt corporis doloremque nihil voluptate id incidunt praesentium illo quibusdam!</p>
+          <p className={Style.card__text}>{content}</p>
           <Btn />
         </div>
       </div>

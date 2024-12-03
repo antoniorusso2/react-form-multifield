@@ -4,6 +4,16 @@ import { useState } from 'react';
 
 export default function Form({ add }) {
   const [titleInput, setTitleInput] = useState('');
+  const defaultPost = {
+    //id viene aggiunto alla creazione
+    title: '',
+    image: undefined /* compila questo campo */,
+    content: '',
+    tags: [],
+    published: true,
+  };
+
+  const [newArticle, setNewArticle] = useState(defaultPost);
 
   function newTitle(e) {
     setTitleInput(e.target.value);
@@ -20,7 +30,7 @@ export default function Form({ add }) {
       <div className="btn_wrap">
         <button
           onClick={() => {
-            add(titleInput);
+            add(defaultPost);
             setTitleInput('');
           }}
           className={style.add_btn}

@@ -79,7 +79,7 @@ function Main() {
         <section className="published_posts">
           <div className="row">
             {publishedPosts.map((post) => {
-              return <Card key={post.id} title={post.title} image={post.image} tags={post.tags} />;
+              return <Card key={post.id} item={post} />;
             })}
           </div>
         </section>
