@@ -2,36 +2,60 @@
 import style from './Form.module.css';
 import { useState } from 'react';
 
+const defaultFormData = {
+  title: '',
+  image: undefined /* compila questo campo */,
+  content: '',
+  tags: [],
+  published: true,
+};
+
 export default function Form({ add }) {
-  const [titleInput, setTitleInput] = useState('');
-  const defaultPost = {
-    //id viene aggiunto alla creazione
-    title: '',
-    image: undefined /* compila questo campo */,
-    content: '',
-    tags: [],
-    published: true,
-  };
+  // const [titleInput, setTitleInput] = useState('');
 
-  const [newArticle, setNewArticle] = useState(defaultPost);
+  const [formData, setFormData] = useState(defaultFormData);
 
-  function newTitle(e) {
-    setTitleInput(e.target.value);
-    // console.log(titleInput);
+  function handleFormData(e) {
+    const key = e.target.name;
+    const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
+    console.log(e, key, value);
+
+    const newData = {
+      ...formData,
+      [key]: value,
+    };
+
+    setFormData(newData);
   }
+  // function newTitle(e) {
+  //   setTitleInput(e.target.value);
+  //   // console.log(titleInput);
+  // }
 
   return (
     <form onSubmit={(e) => e.preventDefault()} className={style.form}>
       <h3>Aggiungi un nuovo post</h3>
-      <label className={style.label} htmlFor="new-title">
-        <span className={style.input_title}>Titolo:</span>
-        <input onChange={newTitle} className={style.input} name="new-title" type="text" placeholder="Inserisci il nuovo titolo" value={titleInput} />
-      </label>
+      <span className={style.input_title}>Titolo:</span>
+
+      <input onChange={handleFormData} className={style.input} name="title" type="text" placeholder="Inserisci il nuovo titolo" value={formData.title} />
+
+      <input onChange={handleFormData} className={style.input} name="content" type="text" placeholder="Inserisci il nuovo titolo" value={formData.content} />
+
+      <div className={style.tags_checkbox}>
+        <label htmlFor="html_tag">Html</label>
+        <input onChange={handleFormData} className={style.input} name="html_tag" type="checkbox" />
+        <label htmlFor="css_tag">Css</label>
+        <input onChange={handleFormData} className={style.input} name="css_tag" type="checkbox" />
+        <label htmlFor="php_tag">Javascript</label>
+        <input onChange={handleFormData} className={style.input} name="js_tag" type="checkbox" />
+        <label htmlFor="php_tag">Php</label>
+        <input onChange={handleFormData} className={style.input} name="php_tag" type="checkbox" />
+      </div>
       <div className="btn_wrap">
         <button
           onClick={() => {
-            add(defaultPost);
-            setTitleInput('');
+            add(formData);
+            // setTitleInput('');
           }}
           className={style.add_btn}
         >

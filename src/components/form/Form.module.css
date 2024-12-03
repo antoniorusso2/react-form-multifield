@@ -5,7 +5,13 @@
   align-items: center;
   justify-content: space-between;
 }
-
+.tags_checkbox {
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
 .input_title {
   margin-right: 1.2rem;
   font-size: 0.8rem;

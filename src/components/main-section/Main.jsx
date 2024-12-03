@@ -28,17 +28,6 @@ function Main() {
   //   setAddedList([...addedList, newElement]);
   // }
 
-  function printAddedList(obj) {
-    console.log(obj);
-    obj.id = nextId;
-    setPublishedPosts([
-      ...publishedPosts,
-      {
-        ...obj,
-      },
-    ]);
-    setAddedList([...addedList, obj]);
-  }
   function deletePost(id) {
     setPublishedPosts(publishedPosts.filter((post) => post.id !== id));
     setAddedList(addedList.filter((post) => post.id !== id));
@@ -64,7 +53,7 @@ function Main() {
                   sci il nuovo titolo" value={inputData} />
                 </form> */}
 
-                <Form add={} />
+                <Form />
                 <ul className={style.added_list}>
                   {addedList &&
                     addedList.map((el) => (
