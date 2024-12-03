@@ -14,7 +14,7 @@ function Card({ item }) {
           <h3 className={Style.card__title}>{title}</h3>
           {tags ? (
             <ul className={Style.banners}>
-              {tags.length > 1 &&
+              {tags.length >= 1 &&
                 tags.map((tag, index) => {
                   return (
                     <li className={`${Style.tag_banner} ${Style[`${tag}`]}`} key={index}>

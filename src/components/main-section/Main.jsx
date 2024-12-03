@@ -30,6 +30,7 @@ function Main() {
     // console.log('elemento eliminato');
 
     setPublishedPosts(publishedPosts.filter((post) => post.id !== id));
+    //rimuovo il post dalla lista di post aggiunti
     setAddedList(addedList.filter((post) => post.id !== id));
   }
 
