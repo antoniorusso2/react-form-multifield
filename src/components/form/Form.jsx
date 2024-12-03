@@ -1,8 +1,12 @@
 /* eslint-disable react/prop-types */
 import style from './Form.module.css';
 import { useState } from 'react';
+import { posts } from '../../data/posts.js';
+
+const nextId = posts.length + 1;
 
 const defaultFormData = {
+  id: nextId,
   title: '',
   image: undefined /* compila questo campo */,
   content: '',
@@ -12,7 +16,6 @@ const defaultFormData = {
 
 export default function Form({ add }) {
   // const [titleInput, setTitleInput] = useState('');
-
   const [formData, setFormData] = useState(defaultFormData);
 
   function handleFormData(e) {
@@ -27,10 +30,9 @@ export default function Form({ add }) {
 
     setFormData(newData);
   }
-  // function newTitle(e) {
-  //   setTitleInput(e.target.value);
-  //   // console.log(titleInput);
-  // }
+  function emptyForm() {
+    setFormData(defaultFormData);
+  }
 
   return (
     <form onSubmit={(e) => e.preventDefault()} className={style.form}>
@@ -55,7 +57,7 @@ export default function Form({ add }) {
         <button
           onClick={() => {
             add(formData);
-            // setTitleInput('');
+            emptyForm();
           }}
           className={style.add_btn}
         >

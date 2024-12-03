@@ -17,16 +17,10 @@ function Main() {
 
   // }
 
-  // function addNewElement() {
-
-  //   const newElement = {
-  //     id: nextId,
-  //     title,
-  //     published: true,
-  //   };
-  //   setPublishedPosts([...publishedPosts, newElement]);
-  //   setAddedList([...addedList, newElement]);
-  // }
+  function addNewElement(newElement) {
+    setPublishedPosts([...publishedPosts, newElement]);
+    setAddedList([...addedList, newElement]);
+  }
 
   function deletePost(id) {
     setPublishedPosts(publishedPosts.filter((post) => post.id !== id));
@@ -53,7 +47,7 @@ function Main() {
                   sci il nuovo titolo" value={inputData} />
                 </form> */}
 
-                <Form />
+                <Form add={addNewElement} />
                 <ul className={style.added_list}>
                   {addedList &&
                     addedList.map((el) => (
