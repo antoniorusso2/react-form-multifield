@@ -2,41 +2,45 @@ import Card from '../card/Card.jsx';
 import Form from '../form/Form.jsx';
 import style from './main.module.css';
 import { posts } from '../../data/posts.js';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function Main() {
   // const [titleInput, setTitleInput] = useState('');
-  const [newPosts, setNewPosts] = useState(posts);
+  const [publishedPosts, setPublishedPosts] = useState(posts.filter((post) => post.published));
   const [addedList, setAddedList] = useState([]);
 
-  const publishedPosts = newPosts.filter((post) => post.published);
-
   //id da inserire ad ogni elemento aggiunto
-  let nextId = newPosts.length + 1;
+  let nextId = publishedPosts.length + 1;
 
   // function newTitle(e) {
   //   setTitleInput(e.target.value);
 
   // }
 
-  function addNewElement(title) {
-    // e.preventDefault();
+  // function addNewElement() {
 
-    title.trim();
-    if (title === '') return;
+  //   const newElement = {
+  //     id: nextId,
+  //     title,
+  //     published: true,
+  //   };
+  //   setPublishedPosts([...publishedPosts, newElement]);
+  //   setAddedList([...addedList, newElement]);
+  // }
 
-    const newElement = {
-      id: nextId,
-      title,
-      published: true,
-    };
-
-    setNewPosts([...newPosts, newElement]);
-    setAddedList([...addedList, newElement]);
+  function printAddedList(obj) {
+    console.log(obj);
+    obj.id = nextId;
+    setPublishedPosts([
+      ...publishedPosts,
+      {
+        ...obj,
+      },
+    ]);
+    setAddedList([...addedList, obj]);
   }
-
   function deletePost(id) {
-    setNewPosts(newPosts.filter((post) => post.id !== id));
+    setPublishedPosts(publishedPosts.filter((post) => post.id !== id));
     setAddedList(addedList.filter((post) => post.id !== id));
   }
 
@@ -53,9 +57,14 @@ function Main() {
       <div className="container">
         <div className="row">
           <div className="col-12">
-            <Form add={addNewElement} />
             <section className="added_elements_section">
-              <div className="col-12">
+              <div className="add_form">
+                {/* <form onSubmit={(e) => e.preventDefault()} className="form_element">
+                  <input onChange={addNewElement} className={style.input} name="new-title" type="text" placeholder="Inseri
+                  sci il nuovo titolo" value={inputData} />
+                </form> */}
+
+                <Form add={} />
                 <ul className={style.added_list}>
                   {addedList &&
                     addedList.map((el) => (
