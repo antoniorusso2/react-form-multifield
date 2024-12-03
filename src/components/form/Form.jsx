@@ -6,15 +6,12 @@ const defaultFormData = {
   title: '',
   image: undefined /* compila questo campo */,
   content: '',
-  tags: [],
   published: true,
 };
 
 export default function Form({ add }) {
-  // const [titleInput, setTitleInput] = useState('');
   const [formData, setFormData] = useState(defaultFormData);
   const [tags, setTags] = useState([]);
-  // const [isChecked, setIsChecked] = useState(false);
 
   function handleFormData(e) {
     console.log('parte il form handler');
@@ -22,24 +19,35 @@ export default function Form({ add }) {
     const key = e.target.name;
     const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
 
-    // checkboxHandler(e);
-    const newData = {
-      ...formData,
-      [key]: value,
-      tags: [...tags, tags],
-    };
-
-    setFormData(newData);
-  }
-
-  function checkboxHandler(e) {
-    console.log('checkbox handler');
-
     const checkbox = e.target;
 
     // add tags
     checkbox.checked ? setTags([...tags, checkbox.name]) : setTags(tags.filter((tag) => tag !== checkbox.name));
+
+    console.log(tags);
+
+    // checkboxHandler(e);
+    const newData = {
+      ...formData,
+      [key]: value,
+      tags: tags,
+    };
+
+    console.log(newData);
+
+    setFormData(newData);
   }
+
+  // function checkboxHandler(e) {
+  //   console.log('checkbox handler');
+
+  //   const checkbox = e.target;
+
+  //   // add tags
+  //   checkbox.checked ? setTags(...tags, checkbox) : setTags(tags.filter((tag) => tag !== checkbox.name));
+
+  //   console.log(tags);
+  // }
 
   function emptyForm() {
     setFormData(defaultFormData);
@@ -67,16 +75,16 @@ export default function Form({ add }) {
 
       <div className={style.tags_checkbox}>
         <label htmlFor="html">Html</label>
-        <input onChange={checkboxHandler} className={style.input} name="html" type="checkbox" />
+        <input onChange={handleFormData} className={style.input} name="html" type="checkbox" />
 
         <label htmlFor="css">Css</label>
-        <input onChange={checkboxHandler} className={style.input} name="css" type="checkbox" />
+        <input onChange={handleFormData} className={style.input} name="css" type="checkbox" />
 
         <label htmlFor="js">Javascript</label>
-        <input onChange={checkboxHandler} className={style.input} name="js" type="checkbox" />
+        <input onChange={handleFormData} className={style.input} name="js" type="checkbox" />
 
         <label htmlFor="php">Php</label>
-        <input onChange={checkboxHandler} className={style.input} name="php" type="checkbox" />
+        <input onChange={handleFormData} className={style.input} name="php" type="checkbox" />
       </div>
       <div className="btn_wrap">
         <button
