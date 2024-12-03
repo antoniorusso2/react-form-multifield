@@ -10,7 +10,7 @@ function Main() {
   const [addedList, setAddedList] = useState([]);
 
   //id da inserire ad ogni elemento aggiunto
-  let nextId = publishedPosts.length + 1;
+  let lastId = publishedPosts.length;
 
   // function newTitle(e) {
   //   setTitleInput(e.target.value);
@@ -18,12 +18,17 @@ function Main() {
   // }
 
   function addNewElement(newElement) {
-    newElement.id = nextId;
+    console.log('render addNewElement');
+
+    newElement.id = lastId + 1;
+
     setPublishedPosts([...publishedPosts, newElement]);
     setAddedList([...addedList, newElement]);
   }
 
   function deletePost(id) {
+    // console.log('elemento eliminato');
+
     setPublishedPosts(publishedPosts.filter((post) => post.id !== id));
     setAddedList(addedList.filter((post) => post.id !== id));
   }

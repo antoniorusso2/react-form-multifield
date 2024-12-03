@@ -17,6 +17,10 @@
   width: 100%;
 }
 
+.category {
+  margin-left: 1rem;
+}
+
 .tags_checkbox {
   display: flex;
   gap: 1rem;
