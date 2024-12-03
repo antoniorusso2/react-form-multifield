@@ -18,6 +18,7 @@ function Main() {
   // }
 
   function addNewElement(newElement) {
+    newElement.id = nextId;
     setPublishedPosts([...publishedPosts, newElement]);
     setAddedList([...addedList, newElement]);
   }
