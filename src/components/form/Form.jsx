@@ -26,11 +26,9 @@ export default function Form({ add }) {
 
     console.log(tags);
 
-    // checkboxHandler(e);
     const newData = {
       ...formData,
       [key]: value,
-      tags: tags,
     };
 
     console.log(newData);
@@ -38,20 +36,19 @@ export default function Form({ add }) {
     setFormData(newData);
   }
 
-  // function checkboxHandler(e) {
-  //   console.log('checkbox handler');
-
-  //   const checkbox = e.target;
-
-  //   // add tags
-  //   checkbox.checked ? setTags(...tags, checkbox) : setTags(tags.filter((tag) => tag !== checkbox.name));
-
-  //   console.log(tags);
-  // }
-
   function emptyForm() {
     setFormData(defaultFormData);
   }
+
+  //controllo presenza tags in base ai checkbox
+  useEffect(
+    () =>
+      setFormData({
+        ...formData,
+        tags: tags,
+      }),
+    [tags],
+  );
 
   return (
     <form onSubmit={(e) => e.preventDefault()} className={style.form}>
