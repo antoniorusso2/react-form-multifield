@@ -72,7 +72,7 @@ export default function Form({ add }) {
 
       <div className={style.tags_checkbox}>
         <label htmlFor="html">Html</label>
-        <input onChange={handleFormData} className={style.input} name="html" type="checkbox" />
+        <input onChange={handleFormData} className={style.input} name="html" type="checkbox" checked={tags.includes('html')} />
 
         <label htmlFor="css">Css</label>
         <input onChange={handleFormData} className={style.input} name="css" type="checkbox" />

@@ -3,19 +3,33 @@ import Form from '../form/Form.jsx';
 import style from './main.module.css';
 import { posts } from '../../data/posts.js';
 import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 function Main() {
   // const [titleInput, setTitleInput] = useState('');
   const [publishedPosts, setPublishedPosts] = useState(posts.filter((post) => post.published));
+
   const [addedList, setAddedList] = useState([]);
 
   //id da inserire ad ogni elemento aggiunto
   let lastId = publishedPosts.length;
 
-  // function newTitle(e) {
-  //   setTitleInput(e.target.value);
+  //fetch API
+  const BASE_URI = 'http://localhost:3000/';
 
-  // }
+  function fetchPosts() {
+    axios
+      .get(`${BASE_URI}posts`)
+      .then((res) => {
+        console.log(res.data);
+        setPublishedPosts(res.data);
+      })
+      .catch((err) => console.error(err));
+  }
+
+  useEffect(() => {
+    fetchPosts();
+  }, []);
 
   function addNewElement(newElement) {
     console.log('render addNewElement');
